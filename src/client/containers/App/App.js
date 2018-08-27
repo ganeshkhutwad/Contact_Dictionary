@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Header, ContactList } from 'components';
+import { Header } from 'components';
+import { List } from 'containers';
 
 class App extends Component {
 
@@ -11,7 +12,7 @@ class App extends Component {
     return (
       <div>
         <Header heading={this.appTitle} />
-        <ContactList />
+        <List />
       </div>
     );
   }
