@@ -1,31 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ContactList, AddButton } from 'components';
+import { ContactList, AddButton, SimpleModal } from 'components';
 import { contactListActions } from 'actions';
 class ListContainer extends Component {
 
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
+            openForm: false
+        }
+    }
     componentDidMount() {
         this.props.dispatch(contactListActions.getList());
     }
 
-    addContact = () => {
-        const list = {
-            id: 3,
-            firstName: 'John',
-            lastName: 'Doe',
-            email: 'johndoe@gmail.com',
-            mobileNum: 8888888888,
-            status: 'Active'
-        };
-
-        this.props.dispatch(contactListActions.createList(list));
+    openFormHandler = () => {
+        this.setState({
+            ...this.state,
+            openForm: true
+        });
     }
 
+    closeFormHandler = () => {
+        this.setState({
+            ...this.state,
+            openForm: false
+        });
+    }
+    
     render() {  
         return (
             <section>
                 <ContactList lists={this.props.lists} />
-                <AddButton addContact={this.addContact} />
+                <AddButton openForm={this.openFormHandler} />
+                <SimpleModal open={this.state.openForm} 
+                             closeModal={this.closeFormHandler} />
             </section>
         );
     }

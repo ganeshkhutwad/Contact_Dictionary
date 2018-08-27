@@ -9,9 +9,9 @@ const addBtn = {
   right: '14px'
 };
 
-const AddButton = ({addContact}) => {
+const AddButton = ({openForm}) => {
     return (
-        <Button variant="fab" color="primary" style={addBtn} aria-label="Add" onClick={addContact}>
+        <Button variant="fab" color="primary" style={addBtn} aria-label="Add" onClick={openForm}>
           <AddIcon />
         </Button>
     );
