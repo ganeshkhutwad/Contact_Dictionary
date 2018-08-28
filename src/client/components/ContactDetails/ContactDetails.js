@@ -19,47 +19,55 @@ const labelStyle = {
     display: 'inline-block'
 };
 
-const statusSection = {
-    width: '100%',
-    height: '50px',
-    background: '#B5F2B5',
-    borderTop: 'solid 1px #ccc',
-    textAlign: 'center',
-    boxSizing: 'border-box',
-    paddingTop: '14px'
-};
-
 const styles = theme => ({
-  card: {
-    maxWidth: 600,
-    margin: '0 auto'
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%',
-  },
-  actions: {
-    display: 'flex',
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
+    card: {
+        maxWidth: 600,
+        margin: '0 auto'
+    },
+    active: {
+        width: '100%',
+        height: '50px',
+        background: '#B5F2B5',
+        borderTop: 'solid 1px #ccc',
+        textAlign: 'center',    
+        boxSizing: 'border-box',
+        paddingTop: '14px'
+    },
+    inactive: {
+        width: '100%',
+        height: '50px',
+        background: '#cccccc2e',
+        borderTop: 'solid 1px #ccc',
+        textAlign: 'center',
+        boxSizing: 'border-box',
+        paddingTop: '14px'
+    },
+    media: {
+        height: 0,
+        paddingTop: '56.25%',
+    },
+    actions: {
+        display: 'flex',
+    },
+    expand: {
+        transform: 'rotate(0deg)',
+        transition: theme.transitions.create('transform', {
+        duration: theme.transitions.duration.shortest,
     }),
     marginLeft: 'auto',
-    [theme.breakpoints.up('sm')]: {
-      marginRight: -8,
+        [theme.breakpoints.up('sm')]: {
+            marginRight: -8,
+        },
     },
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
-  avatar: {
-    backgroundColor: red[500],
-  },
-  cardContent: {
-      lineHeight: 2
-  }
+    expandOpen: {
+        transform: 'rotate(180deg)',
+    },
+    avatar: {
+        backgroundColor: red[500],
+    },
+    cardContent: {
+        lineHeight: 2
+    }
 });
 
 const options = [
@@ -101,6 +109,7 @@ class ContactDetails extends Component {
 
     render() {
         const { classes, list } = this.props;
+        const statusClass = list.status.toLowerCase() === 'active' ? classes.active : classes.inactive;
         const { anchorEl } = this.state;
         const open = Boolean(anchorEl);
 
@@ -162,7 +171,7 @@ class ContactDetails extends Component {
                     <span>{list.email}</span>
                 </div>
             </CardContent>
-            <div style={statusSection}>
+            <div className={statusClass}>
                     <span>{list.status}</span>
                 </div>
             </Card>
