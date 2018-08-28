@@ -1,49 +1,58 @@
-const contactListActions = {
-    createList: (list) => {
-        return {
-            list,
-            type: 'CREATE_LIST'
-        };
-    },
+/**
+    @author Ganesh Khutwad
+    This file contains action creators related to contact list feature.
+ */
+import axios from 'axios';
+import actionTypes from './actionTypes';
 
-    getList: () => {
-        const contactLists = [
-            {
-                id: 1,
-                firstName: 'Ganesh',
-                lastName: 'Khutwad',
-                email: 'ganeshkhutwad30690@gmail.com',
-                mobileNum: 9763484283,
-                status: 'Active'
-            },
-            {
-                id: 2,
-                firstName: 'Cory',
-                lastName: 'House',
-                email: 'coryhouse@gmail.com',
-                mobileNum: 1234512345,
-                status: 'Active'
-            }
-        ];
+// Action Types.
+const { ADD_CONTACT_SUCCESS, LOAD_CONTACTLISTS_SUCCESS } = actionTypes;
 
-        return {
-            contactLists,
-            type: 'GET_LIST'
-        };
+// Returns object when successful response received on get list request. 
+const loadContactListsSuccess = (contactLists) => {
+    return {
+        contactLists,
+        type: LOAD_CONTACTLISTS_SUCCESS
+    };
+};
+
+// Returns object when successful response recieved after adding new record.
+const addContactSuccess = (contact) => {
+    return {
+        contact,
+        type: ADD_CONTACT_SUCCESS
     }
 }
 
+// Wrapped all Action Creators to easily accessible outside module.
+const contactListActions = {
+    // Action creator to add new list.
+    addContact: (contact) => {
+        return (dispatch) => {
+            return axios.post('/contactLists', contact)
+                .then((res) => {
+                    console.log('response ==>', res);
+                    dispatch(addContactSuccess(contact));
+                })
+                .catch((error) => {
+                    throw error;
+                });
+        }
+    },
+
+    // Action creator to load contact list.
+    loadContactLists: () => {
+        return (dispatch) => {
+            return axios.get('/contactLists')
+                .then((res) => {
+                    console.log('response ==>', res);
+                    dispatch(loadContactListsSuccess(res.data));
+                })
+                .catch((error) => {
+                    throw(error);
+                });
+        }
+    }
+};
+
 export default contactListActions;
-
-// export function createList(list) {
-//     return {
-//         list,
-//         type: 'CREATE_LIST'
-//     };
-// }
-
-// export function getList() {
-//     return {
-//         type: 'GET_LIST'
-//     };
-// }

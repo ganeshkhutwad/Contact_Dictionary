@@ -42,11 +42,25 @@ const appRouter = function (app) {
     });
 
     app.put('/contactLists', (req, res) => {
-
+        readFile('/contactList.json', (data) => {
+            const lists = JSON.parse(data);
+            const newLists = lists
+                                .filter(list => lists.id !== req.body.id)
+                                .concat([req.body]);
+            writeFile('/contactList.json', JSON.stringify(newLists), (message) => {
+                res.status(200).send(newLists);
+            }); 
+        });
     });
 
     app.delete('/contactLists/:id', (req, res) => {
-
+        readFile('/contactList.json', (data) => {
+            const lists = JSON.parse(data);
+            const newLists = lists.filter((ele) => ele.id !== req.params.id);
+            writeFile('/contactList.json', JSON.stringify(newLists), (message) => {
+                res.status(200).send(newLists);
+            });
+        });
     });
 };
 

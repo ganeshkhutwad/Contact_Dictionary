@@ -19,20 +19,20 @@ const styles = theme => ({
   },
 });
 
-const getContactDetailLayout = (classes, list) => {
+const getContactDetailLayout = (classes, list, editContact, deleteContact) => {
     return (
         <Grid key={list.id} item xs={12} sm={6}>
-            <ContactDetails list={list} className={classes.paper} />
+            <ContactDetails editContact={editContact} deleteContact={deleteContact} list={list} className={classes.paper} />
         </Grid>
     );
 }
 
-const ContactList = ({classes, lists}) => {
+const ContactList = ({classes, lists, editContact, deleteContact}) => {
     return (
         <div className={classes.root}>
             <Grid container spacing={24}>
                 {
-                    lists.map(list => getContactDetailLayout(classes, list))
+                    lists.map(list => getContactDetailLayout(classes, list, editContact, deleteContact))
                 }
             </Grid>
         </div>

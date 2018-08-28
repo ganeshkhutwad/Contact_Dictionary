@@ -1,3 +1,6 @@
+/**
+@author Ganesh Khutwad
+ */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -82,11 +85,17 @@ class ContactDetails extends Component {
         });
     }
 
-    handleClose = () => {
+    handleClose = (option, contact) => {
+        console.log(option, contact);
         this.setState({
             ...this.state,
             anchorEl: null
         });
+        if (option === 'Edit') {
+            this.props.editContact(contact);
+        } else if (option === 'Delete') {
+            this.props.deleteContact(contact);
+        }
     }
 
 
@@ -124,7 +133,7 @@ class ContactDetails extends Component {
                     }}
                 >
                     {options.map(option => (
-                        <MenuItem key={option} onClick={this.handleClose}>
+                        <MenuItem key={option} onClick={this.handleClose.bind(this, option, list)}>
                         {option}
                         </MenuItem>
                     ))}

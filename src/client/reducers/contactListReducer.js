@@ -1,18 +1,21 @@
+import { actionTypes } from 'actions';
+
+const { ADD_CONTACT_SUCCESS, LOAD_CONTACTLISTS_SUCCESS } = actionTypes;
+
 export default function courseReducer(state = [], action) {
     switch(action.type) {
-        case 'CREATE_LIST': {
+        case ADD_CONTACT_SUCCESS: {
             return [
                 ...state,
                 {
-                    ...action.list
+                    ...action.contact
                 }
             ]
         }
 
-        case 'GET_LIST': {
+        case LOAD_CONTACTLISTS_SUCCESS: {
             console.log('action list ==>', action.contactLists);
             return [
-                ...state,
                 ...action.contactLists
             ];
         }

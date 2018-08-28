@@ -1,0 +1,6 @@
+const actionTypes = {
+    ADD_CONTACT_SUCCESS: 'ADD_CONTACT_SUCCESS',
+    LOAD_CONTACTLISTS_SUCCESS: 'LOAD_CONTACTLISTS_SUCCESS'
+};
+
+export default actionTypes;

@@ -6,10 +6,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
-
 function getModalStyle() {
   const top = 50;
   const left = 50;
@@ -31,7 +27,7 @@ const styles = theme => ({
   },
 });
 
-const SimpleModal = ({classes, open, closeModal}) => {
+const SimpleModal = ({classes, open, closeModal, children}) => {
     return (
         <Modal
           aria-labelledby="simple-modal-title"
@@ -40,12 +36,13 @@ const SimpleModal = ({classes, open, closeModal}) => {
           onClose={closeModal}
         >
           <div style={getModalStyle()} className={classes.paper}>
+            {children}
           </div>
         </Modal>
     )
 }
 
-Modal.propTypes = {
+SimpleModal.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
