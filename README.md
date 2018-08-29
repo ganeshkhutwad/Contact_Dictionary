@@ -47,11 +47,11 @@ Folder Structure
                 ├── reducers      # Reducers to get new state based on action.
                 ├── store         # Setup application store.
                 ├── test-report   # Report generated in HTML format when unit test cases executes.
-                ├── index.js      # Entry point for application.
+                └── index.js      # Entry point for application.
 
           ├── server              # Server Files.
                 ├── index.js      # Used Built-in middlewares and create HTTP server and run it.
-                ├── routes        # All routes/REST APIs maintained here.
+                └── routes        # All routes/REST APIs maintained here.
     └── README.md                 # Guidelines for application setup and details.
 
 
