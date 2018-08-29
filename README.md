@@ -57,7 +57,7 @@ $ npm run client or yarn client
 $ npm run test or yarn test
 ```
 
-(optional)Test coverage
+(optional) Test coverage
 ```sh
 $ npm run test:coverage or yar test:coverage
 ```
