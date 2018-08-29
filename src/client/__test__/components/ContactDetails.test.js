@@ -3,13 +3,14 @@ Test `AddButton` Presentational Component.
 @author Ganesh Khutwad
  */
 import React from 'react';
-import { AddButton } from '../../components/AddButton';
+import { ContactDetails } from '../../components/ContactDetails';
 
-const openForm = () => { }
+const classes = { };
+const list = { };
 
-describe('`AddButton` Tests', () => {
-    it('`AddButton` Snapshot', () => {
-        const addButtonWrapper = shallow(<AddButton openForm={openForm} />);
-        expect(addButtonWrapper).toMatchSnapshot();
+describe('`ContactDetails` Tests', () => {
+    it('`ContactDetails` Snapshot', () => {
+        const contactDetailsWrapper = shallow(<ContactDetails classes={classes} list={list} />);
+        expect(contactDetailsWrapper).toMatchSnapshot();
     });
 });

@@ -23,7 +23,7 @@ const ConfirmationBox = ({ value, deleteRecord, classes }) => {
 
 // Check prop types
 ConfirmationBox.propType = {
-    value: PropTypes.string.isRequired,
+    value: PropTypes.number.isRequired,
     deleteRecord: PropTypes.func.isRequired
 };
 

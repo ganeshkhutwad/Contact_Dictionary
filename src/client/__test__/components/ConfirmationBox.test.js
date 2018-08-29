@@ -3,13 +3,14 @@ Test `AddButton` Presentational Component.
 @author Ganesh Khutwad
  */
 import React from 'react';
-import { AddButton } from '../../components/AddButton';
+import { ConfirmationBox } from '../../components/ConfirmationBox';
 
-const openForm = () => { }
+const value = 10;
+const deleteRecord = () => { }
 
-describe('`AddButton` Tests', () => {
-    it('`AddButton` Snapshot', () => {
-        const addButtonWrapper = shallow(<AddButton openForm={openForm} />);
-        expect(addButtonWrapper).toMatchSnapshot();
+describe('`ConfirmationBox` Tests', () => {
+    it('`ConfirmationBox` Snapshot', () => {
+        const confirmationBoxWrapper = shallow(<ConfirmationBox value={value} deleteRecord={deleteRecord} />);
+        expect(confirmationBoxWrapper).toMatchSnapshot();
     });
 });

@@ -43,7 +43,7 @@ const SimpleModal = ({classes, open, closeModal, children}) => {
 }
 
 SimpleModal.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(SimpleModal)
