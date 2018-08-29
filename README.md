@@ -52,10 +52,16 @@ Second Tab:
 $ npm run client or yarn client
 ```
 
-(optional) Third:
+(optional) Third: To generate unit test report. It also generate report in html format.
 ```sh
 $ npm run test or yarn test
 ```
+
+(optional)Test coverage
+```sh
+$ npm run test:coverage or yar test:coverage
+```
+
 #### Building for source
 For production release:
 ```sh
