@@ -13,10 +13,11 @@ import validate from './validate';
 
 const styles = () => ({
     btn: {
-        margin: '10px'
+        marginLeft: '14px',
+        float: 'right'
     },
     fieldWidth: {
-        width: '100%'
+        width: '100% !important'
     }
 });
 
