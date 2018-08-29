@@ -21,6 +21,9 @@ Contact Dictionary uses a number of open source projects to work properly:
 * [Express](https://expressjs.com/) - fast node.js web framework for Node.js
 * [Webpack](https://webpack.js.org/) - static module bundler for modern JavaScript applications.
 
+### Browsers Support
+  - Tested on Chrome, Mozilla Firefox, and Microsoft Edge Browsers.
+
 ### Installation
 
 Contact Dictionary requires [Node.js](https://nodejs.org/en/) v8+ to run.
