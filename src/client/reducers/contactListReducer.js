@@ -1,3 +1,7 @@
+/**
+@author Ganesh Khutwad
+Reducer to update application state based on action type.
+ */
 import { actionTypes } from 'actions';
 
 const {
@@ -15,11 +19,10 @@ export default function courseReducer(state = [], action) {
                 {
                     ...action.contact
                 }
-            ]
+            ];
         }
 
         case LOAD_CONTACTLISTS_SUCCESS: {
-            console.log('action list ==>', action.contactLists);
             return [
                 ...action.contactLists
             ];

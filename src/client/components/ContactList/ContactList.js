@@ -40,7 +40,10 @@ const ContactList = ({classes, lists, editContact, deleteContact}) => {
 }
 
 ContactList.propType = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    lists: PropTypes.array.isRequired,
+    editContact: PropTypes.func.isRequired,
+    deleteContact: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(ContactList);

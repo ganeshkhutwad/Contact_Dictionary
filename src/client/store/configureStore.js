@@ -1,3 +1,7 @@
+/**
+@author Ganesh Khutwad
+Configure application store, add middlwares such as `thunk` etc.
+ */
 import { createStore, applyMiddleware } from 'redux';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import rootReducer from 'reducers';

@@ -1,5 +1,6 @@
 /**
 @author Ganesh Khutwad
+To list contact details on contact card.
  */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -14,15 +15,15 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
-const labelStyle = {
-    width: '250px',
-    display: 'inline-block'
-};
-
+// Define classes to style elements.
 const styles = theme => ({
     card: {
         maxWidth: 600,
         margin: '0 auto'
+    },
+    label: {
+        width: '250px',
+        display: 'inline-block'
     },
     active: {
         width: '100%',
@@ -31,7 +32,8 @@ const styles = theme => ({
         borderTop: 'solid 1px #ccc',
         textAlign: 'center',    
         boxSizing: 'border-box',
-        paddingTop: '14px'
+        paddingTop: '14px',
+        textTransform: 'capitalize'
     },
     inactive: {
         width: '100%',
@@ -40,7 +42,8 @@ const styles = theme => ({
         borderTop: 'solid 1px #ccc',
         textAlign: 'center',
         boxSizing: 'border-box',
-        paddingTop: '14px'
+        paddingTop: '14px',
+        textTransform: 'capitalize'
     },
     media: {
         height: 0,
@@ -70,11 +73,11 @@ const styles = theme => ({
     }
 });
 
+// action list for each contact card.
 const options = [
     'Edit',
     'Delete'
 ];
-
 const ITEM_HEIGHT = 48;
 
 class ContactDetails extends Component {
@@ -94,7 +97,6 @@ class ContactDetails extends Component {
     }
 
     handleClose = (option, contact) => {
-        console.log(option, contact);
         this.setState({
             ...this.state,
             anchorEl: null
@@ -113,6 +115,7 @@ class ContactDetails extends Component {
         const { anchorEl } = this.state;
         const open = Boolean(anchorEl);
 
+        // return virtual DOM.
         return (
             <Card className={classes.card}>
             <CardHeader
@@ -155,19 +158,19 @@ class ContactDetails extends Component {
             />
             <CardContent>
                 <div>
-                    <span style={labelStyle}>First Name</span>
+                    <span className={classes.label}>First Name</span>
                     <span>{list.firstName}</span>
                 </div>
                 <div>
-                    <span style={labelStyle}>Last Name</span>
+                    <span className={classes.label}>Last Name</span>
                     <span>{list.lastName}</span>
                 </div>
                 <div>
-                    <span style={labelStyle}>Mobile Number</span>
+                    <span className={classes.label}>Mobile Number</span>
                     <span>{list.mobileNum}</span>
                 </div>
                 <div>
-                    <span style={labelStyle}>Email address</span>
+                    <span className={classes.label}>Email address</span>
                     <span>{list.email}</span>
                 </div>
             </CardContent>
@@ -182,6 +185,7 @@ class ContactDetails extends Component {
 
 ContactDetails.propTypes = {
   classes: PropTypes.object.isRequired,
+  list: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(ContactDetails);

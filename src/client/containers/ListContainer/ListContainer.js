@@ -1,5 +1,8 @@
 /**
 @author Ganesh Khutwad
+ListContainer is a container for contact list.
+It is connected with application store to get application level states and
+wraps Dumb components.
  */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -15,6 +18,8 @@ class ListContainer extends Component {
 
     constructor(props, context) {
         super(props, context);
+
+        // Initial state.
         this.state = {
             openForm: false,
             openConfirmationBox: false,
@@ -30,10 +35,12 @@ class ListContainer extends Component {
             operationType: null
         }
     }
+
     componentDidMount() {
         this.props.actions.loadContactLists();
     }
 
+    // Open form to create new record.
     openFormHandler = () => {
         this.setState({
             ...this.state,
@@ -46,6 +53,7 @@ class ListContainer extends Component {
         });
     }
 
+    // Reset form when form gets close.
     closeFormHandler = () => {
         this.setState({
             ...this.state,
@@ -62,6 +70,7 @@ class ListContainer extends Component {
         });
     }
     
+    // Close confirmation popup.
     closeConfirmationBoxHandler = () => {
         this.setState({
             ...this.state,
@@ -69,6 +78,7 @@ class ListContainer extends Component {
         });
     }
 
+    // Submit form event, trigger action to add or update record.
     formSubmitHandler = (formValue) => {
         this.setState({
             ...this.state,
@@ -82,6 +92,7 @@ class ListContainer extends Component {
         }
     }
 
+    // When user select edit option.
     editContactHandler = (contact) => {
         this.setState({
             ...this.state,
@@ -91,6 +102,7 @@ class ListContainer extends Component {
         });
     }
 
+    // When user select delete option.
     deleteContactHandler = (contact) => {
         this.setState({
             ...this.state,
@@ -100,6 +112,7 @@ class ListContainer extends Component {
         });
     }
 
+    // Trigger delete action to remove selected record.
     deleteRecordHandler = () => {
         this.setState({
             ...this.state,
@@ -108,6 +121,7 @@ class ListContainer extends Component {
         this.props.actions.deleteContact(this.state.id);
     }
 
+    // When state is changes, every time returns Virtual DOM.
     render() {  
         return (
             <section>
@@ -137,22 +151,25 @@ class ListContainer extends Component {
     }
 }
 
+// Map application state with props to access within component.
 function mapStateToProps(state, ownProps) {
-    console.log('value of state ==>', state);
     return {
         lists: state.contactLists
     }
 }
 
+// Map actions with props to access within component.
 function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators(contactListActions, dispatch)
     }
 }
 
+// Check prop types
 ListContainer.propType = {
     lists: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired
 };
 
+// Connect React component with Redux to access application state.
 export default connect(mapStateToProps, mapDispatchToProps)(ListContainer);

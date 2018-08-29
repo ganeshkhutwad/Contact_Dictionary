@@ -1,5 +1,6 @@
 /**
 @author Ganesh Khutwad
+    - Create HTTP server and host the application.
  */
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -13,4 +14,4 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 routes(app);
 
-app.listen(8080, () => console.log('Listening on port 8080!'));
+app.listen(8284, () => console.log('Listening on port 8284!'));

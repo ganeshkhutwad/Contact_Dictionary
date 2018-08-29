@@ -52,7 +52,6 @@ const contactListActions = {
         return (dispatch) => {
             return axios.get('/contactLists')
                 .then((res) => {
-                    console.log('response ==>', res);
                     dispatch(loadContactListsSuccess(res.data));
                 })
                 .catch((error) => {
@@ -66,7 +65,6 @@ const contactListActions = {
         return (dispatch) => {
             return axios.post('/contactLists', contact)
                 .then((res) => {
-                    console.log('response ==>', res);
                     dispatch(addContactSuccess(contact));
                 })
                 .catch((error) => {
@@ -80,7 +78,6 @@ const contactListActions = {
         return (dispatch) => {
             return axios.put('/contactLists', contact)
                 .then((res) => {
-                    console.log('response ==>', res);
                     dispatch(updateContactSuccess(res.data));
                 })
                 .catch((error) => {
@@ -94,7 +91,6 @@ const contactListActions = {
         return (dispatch) => {
             return axios.delete(`/contactLists/${id}`)
                 .then((res) => {
-                    console.log('response ==>', res);
                     dispatch(deleteContactSuccess(res.data));
                 })
                 .catch((error) => {
