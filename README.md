@@ -33,6 +33,28 @@ $ npm install or yarn install
 $ node run start or yarn start
 ```
 
+Folder Structure
+
+    .
+
+    ├── src                       # Source files, It contains client as well as server files.
+          ├── client              # Client Files.
+                ├── __test__      # It contains all unit test cases.
+                ├── actions       # It contains action creators.
+                ├── components    # Folder for Presentational/Dumb Components.
+                ├── contants      # Application level contants.
+                ├── containers    # Container/Smart Components.
+                ├── reducers      # Reducers to get new state based on action.
+                ├── store         # Setup application store.
+                ├── test-report   # Report generated in HTML format when unit test cases executes.
+                ├── index.js      # Entry point for application.
+
+          ├── server              # Server Files.
+                ├── index.js      # Used Built-in middlewares and create HTTP server and run it.
+                ├── routes        # All routes/REST APIs maintained here.
+    └── README.md                 # Guidelines for application setup and details.
+
+
 ### Development
 
 Want to contribute? Great!
