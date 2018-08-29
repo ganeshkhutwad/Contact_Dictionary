@@ -45,7 +45,7 @@ const appRouter = function (app) {
         readFile('/contactList.json', (data) => {
             const lists = JSON.parse(data);
             const newLists = lists
-                                .filter(list => lists.id !== req.body.id)
+                                .filter(list => list.id !== req.body.id)
                                 .concat([req.body]);
             writeFile('/contactList.json', JSON.stringify(newLists), (message) => {
                 res.status(200).send(newLists);
@@ -56,7 +56,7 @@ const appRouter = function (app) {
     app.delete('/contactLists/:id', (req, res) => {
         readFile('/contactList.json', (data) => {
             const lists = JSON.parse(data);
-            const newLists = lists.filter((ele) => ele.id !== req.params.id);
+            const newLists = lists.filter((ele) => ele.id !== Number(req.params.id));
             writeFile('/contactList.json', JSON.stringify(newLists), (message) => {
                 res.status(200).send(newLists);
             });

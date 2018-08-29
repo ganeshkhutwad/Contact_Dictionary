@@ -26,7 +26,8 @@ class ListContainer extends Component {
                 email: null,
                 mobileNum: null,
                 status: null
-            }
+            },
+            operationType: null
         }
     }
     componentDidMount() {
@@ -39,8 +40,9 @@ class ListContainer extends Component {
             openForm: true,
             formValues: {
                 ...this.state.formValues,
-                id: Math.random().toFixed(2)*100
-            }
+                id: Math.floor(Math.random() * 100) + 1
+            },
+            operationType: 'add'
         });
     }
 
@@ -55,7 +57,8 @@ class ListContainer extends Component {
                 email: null,
                 mobileNum: null,
                 status: null
-            }
+            },
+            operationType: null
         });
     }
     
@@ -71,15 +74,20 @@ class ListContainer extends Component {
             ...this.state,
             openForm: false
         });
-        console.log('form values ==>', formValue);
-        this.props.actions.addContact(formValue);
+        
+        if (this.state.operationType === 'add') {
+            this.props.actions.addContact(formValue);
+        } else if (this.state.operationType === 'edit') {
+            this.props.actions.updateContact(formValue);
+        }
     }
 
     editContactHandler = (contact) => {
         this.setState({
             ...this.state,
             openForm: true,
-            formValues: { ...contact }
+            formValues: { ...contact },
+            operationType: 'edit'
         });
     }
 
@@ -87,8 +95,17 @@ class ListContainer extends Component {
         this.setState({
             ...this.state,
             openConfirmationBox: true,
-            id: contact.id
+            id: contact.id,
+            operationType: 'delete'
         });
+    }
+
+    deleteRecordHandler = () => {
+        this.setState({
+            ...this.state,
+            openConfirmationBox: false
+        });
+        this.props.actions.deleteContact(this.state.id);
     }
 
     render() {  
@@ -113,7 +130,7 @@ class ListContainer extends Component {
                 <SimpleModal open={this.state.openConfirmationBox} 
                              closeModal={this.closeConfirmationBoxHandler}
                 >
-                    <ConfirmationBox value={this.state.id} />
+                    <ConfirmationBox value={this.state.id} deleteRecord={this.deleteRecordHandler} />
                 </SimpleModal>
             </section>
         );

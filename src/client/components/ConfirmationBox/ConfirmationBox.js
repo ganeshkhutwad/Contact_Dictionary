@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ConfirmationBox = ({ value }) => {
+const ConfirmationBox = ({ value, deleteRecord }) => {
     return (
         <div>
             <div> Do you want to delete contact with id = {value}</div>
-            <button>Ok</button>
+            <button onClick={deleteRecord}>Ok</button>
         </div>
     )
 }

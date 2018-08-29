@@ -6,7 +6,12 @@ import axios from 'axios';
 import actionTypes from './actionTypes';
 
 // Action Types.
-const { ADD_CONTACT_SUCCESS, LOAD_CONTACTLISTS_SUCCESS } = actionTypes;
+const {
+    ADD_CONTACT_SUCCESS,
+    LOAD_CONTACTLISTS_SUCCESS,
+    UPDATE_CONTACT_SUCCESS,
+    DELETE_CONTACT_SUCCESS
+} = actionTypes;
 
 // Returns object when successful response received on get list request. 
 const loadContactListsSuccess = (contactLists) => {
@@ -24,8 +29,38 @@ const addContactSuccess = (contact) => {
     }
 }
 
+// Returns object when successful response recieved after updating the record.
+const updateContactSuccess = (contact) => {
+    return {
+        contact,
+        type: UPDATE_CONTACT_SUCCESS
+    }
+}
+
+// Returns object when successful response recieved after deleting the record.
+const deleteContactSuccess = (contact) => {
+    return {
+        contact,
+        type: DELETE_CONTACT_SUCCESS
+    }
+}
+
 // Wrapped all Action Creators to easily accessible outside module.
 const contactListActions = {
+    // Action creator to load contact list.
+    loadContactLists: () => {
+        return (dispatch) => {
+            return axios.get('/contactLists')
+                .then((res) => {
+                    console.log('response ==>', res);
+                    dispatch(loadContactListsSuccess(res.data));
+                })
+                .catch((error) => {
+                    throw(error);
+                });
+        }
+    },
+
     // Action creator to add new list.
     addContact: (contact) => {
         return (dispatch) => {
@@ -40,16 +75,30 @@ const contactListActions = {
         }
     },
 
-    // Action creator to load contact list.
-    loadContactLists: () => {
+    // Action creator to add new list.
+    updateContact: (contact) => {
         return (dispatch) => {
-            return axios.get('/contactLists')
+            return axios.put('/contactLists', contact)
                 .then((res) => {
                     console.log('response ==>', res);
-                    dispatch(loadContactListsSuccess(res.data));
+                    dispatch(updateContactSuccess(res.data));
                 })
                 .catch((error) => {
-                    throw(error);
+                    throw error;
+                });
+        }
+    },
+
+    // Action creator to add new list.
+    deleteContact: (id) => {
+        return (dispatch) => {
+            return axios.delete(`/contactLists/${id}`)
+                .then((res) => {
+                    console.log('response ==>', res);
+                    dispatch(deleteContactSuccess(res.data));
+                })
+                .catch((error) => {
+                    throw error;
                 });
         }
     }
