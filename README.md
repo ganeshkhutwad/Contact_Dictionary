@@ -33,7 +33,7 @@ Steps to run the application.
 ```sh
 $ cd Contact_Dictionary
 $ npm install or yarn install
-$ node run start or yarn start
+$ npm run start or yarn start
 ```
 
 ### Folder Structure
